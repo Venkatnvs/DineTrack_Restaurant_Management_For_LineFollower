@@ -4,7 +4,7 @@ import { MENU_ITEMS } from '@/lib/constants';
 
 export function MenuBar() {
   return (
-    <ScrollArea className="w-80 md:w-full whitespace-nowrap rounded-md border">
+    <ScrollArea className="w-96 md:w-full whitespace-nowrap rounded-md border">
       <div className="flex space-x-4 p-4 overflow-x-auto">
         {MENU_ITEMS.map((item) => (
           <Card 
