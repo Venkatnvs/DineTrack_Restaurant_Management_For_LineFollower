@@ -1,4 +1,5 @@
-import { database, ref, get, child, set } from "../firebase-config";
+import { database, ref, get, set } from "../firebase-config"
+import { MenuItem } from "./types"; // Adjust the import path as necessary
 import { MENU_ITEMS } from "./constants";
 
 export async function fetchTableData() {
@@ -8,7 +9,7 @@ export async function fetchTableData() {
     const t1Snapshot = await get(t1Ref);
     const t2Snapshot = await get(t2Ref);
 
-    let mainData = {
+    const mainData: { T1: MenuItem[]; T2: MenuItem[] } = {
       T1: [],
       T2: [],
     };
@@ -16,10 +17,10 @@ export async function fetchTableData() {
     if (t1Snapshot.exists() && t1Snapshot.val() !== "null") {
       mainData["T1"] = t1Snapshot.val()
       .split(",")
-      .map(item => item.trim())
-      .filter(item => item !== "")
-      .map(item => MENU_ITEMS.find(menuItem => menuItem.name === item))
-      .filter(menuItem => menuItem !== undefined);
+      .map((item: string) => item.trim())
+      .filter((item: string) => item !== "")
+      .map((item: string) => MENU_ITEMS.find(menuItem => menuItem.name === item))
+      .filter((menuItem: MenuItem | undefined): menuItem is MenuItem => menuItem !== undefined);
     } else {
       console.log("No data available for T1");
     }
@@ -27,10 +28,10 @@ export async function fetchTableData() {
     if (t2Snapshot.exists() && t2Snapshot.val() !== "null") {
       mainData["T2"] = t2Snapshot.val()
       .split(",")
-      .map(item => item.trim())
-      .filter(item => item !== "")
-      .map(item => MENU_ITEMS.find(menuItem => menuItem.name === item))
-      .filter(menuItem => menuItem !== undefined);
+      .map((item: string) => item.trim())
+      .filter((item: string) => item !== "")
+      .map((item: string) => MENU_ITEMS.find(menuItem => menuItem.name === item))
+      .filter((menuItem: MenuItem | undefined): menuItem is MenuItem => menuItem !== undefined);
     } else {
       console.log("No data available for T2");
     }

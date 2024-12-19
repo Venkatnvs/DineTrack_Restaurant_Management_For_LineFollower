@@ -24,8 +24,6 @@ export function FoodItem({ position, type, hovered }: FoodItemProps) {
   });
 
   const renderFood = () => {
-    const foodPosition = [0, 0.1, 0]; // slightly raised position for the fruit
-
     // Plate dimensions
     const plateSize = 0.5; // Plate radius
 
@@ -118,7 +116,7 @@ export function FoodItem({ position, type, hovered }: FoodItemProps) {
       ref={meshRef}
       position={position}
       scale={scale}
-      rotation={rotation}
+      rotation={rotation as unknown as [number, number, number]}
       castShadow
     >
       {renderFood()}

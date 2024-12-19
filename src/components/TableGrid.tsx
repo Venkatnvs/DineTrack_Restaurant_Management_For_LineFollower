@@ -27,8 +27,8 @@ export function TableGrid() {
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
       {['T1', 'T2', 'T3', 'T4'].map((tableId) => {
         const isDisabled = disabledTables.includes(tableId);
-        const items = tableData[tableId] || [];
-        const order: TableOrder | null = items?.length
+        const items = (tableData[tableId] || []) as unknown as TableOrder['items'];
+        const order: TableOrder | null = items.length
           ? {
               id: tableId,
               items: items?.reduce((acc, item) => {
